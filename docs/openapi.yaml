@@ -6,6 +6,364 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/<{movie_id}:UUID>/bookmark": {
+            "post": {
+                "tags": [
+                    "bookmark"
+                ],
+                "summary": "Add movie to bookmarks",
+                "description": "Add specific movie to bookmarks",
+                "operationId": "add_bookmark_api_v1___movie_id__UUID__bookmark_post",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTBearerRemoteGrpc": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "bookmark"
+                ],
+                "summary": "Delete movie from bookmarks",
+                "description": "Delete specific movie from bookmarks",
+                "operationId": "delete_bookmark_api_v1___movie_id__UUID__bookmark_delete",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTBearerRemoteGrpc": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/<{movie_id}:UUID>/like": {
+            "post": {
+                "tags": [
+                    "like"
+                ],
+                "summary": "Like movie",
+                "description": "Add like to specific movie",
+                "operationId": "like_api_v1___movie_id__UUID__like_post",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTBearerRemoteGrpc": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/<{movie_id}:UUID>/dislike": {
+            "post": {
+                "tags": [
+                    "like"
+                ],
+                "summary": "Dislike movie",
+                "description": "Add dislike to specific movie",
+                "operationId": "dislike_api_v1___movie_id__UUID__dislike_post",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTBearerRemoteGrpc": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/<{movie_id}:UUID>/review": {
+            "get": {
+                "tags": [
+                    "review"
+                ],
+                "summary": "Retrieve movie reviews",
+                "description": "Retrieve specific movie reviews",
+                "operationId": "retrieve_reviews_api_v1___movie_id__UUID__review_get",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "title": "Response Retrieve Reviews Api V1   Movie Id  Uuid  Review Get",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ReviewResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "review"
+                ],
+                "summary": "Add review to movie",
+                "description": "Add review to specific movie",
+                "operationId": "add_review_api_v1___movie_id__UUID__review_post",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReviewRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTBearerRemoteGrpc": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "review"
+                ],
+                "summary": "Delete review from movie",
+                "description": "Delete review from specific movie",
+                "operationId": "delete_review_api_v1___movie_id__UUID__review_delete",
+                "parameters": [
+                    {
+                        "description": "parameter - movie id",
+                        "required": true,
+                        "schema": {
+                            "title": "movie id",
+                            "type": "string",
+                            "description": "parameter - movie id",
+                            "format": "uuid"
+                        },
+                        "name": "movie_id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReviewRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "JWTBearerRemoteGrpc": []
+                    }
+                ]
+            }
+        },
         "/api/v1/view_progress": {
             "post": {
                 "tags": [
@@ -45,117 +403,10 @@
                     }
                 }
             }
-        },
-        "/api/v1/like": {
-            "post": {
-                "tags": [
-                    "likes"
-                ],
-                "summary": "Like",
-                "description": "Add like",
-                "operationId": "like_api_v1_like_post",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LikeRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/dislike": {
-            "post": {
-                "tags": [
-                    "likes"
-                ],
-                "summary": "Dislike",
-                "description": "Add dislike",
-                "operationId": "dislike_api_v1_dislike_post",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DislikeRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "components": {
         "schemas": {
-            "DislikeRequest": {
-                "title": "DislikeRequest",
-                "required": [
-                    "movie_id",
-                    "user_id"
-                ],
-                "type": "object",
-                "properties": {
-                    "_id": {
-                        "title": " Id",
-                        "type": "string",
-                        "format": "uuid",
-                        "default": "b17d77a8-7814-4bc6-bb84-bca28a6d9f62"
-                    },
-                    "movie_id": {
-                        "title": "Movie Id",
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "user_id": {
-                        "title": "User Id",
-                        "type": "string",
-                        "format": "uuid"
-                    }
-                },
-                "description": "Dislike request."
-            },
             "HTTPValidationError": {
                 "title": "HTTPValidationError",
                 "type": "object",
@@ -169,32 +420,54 @@
                     }
                 }
             },
-            "LikeRequest": {
-                "title": "LikeRequest",
+            "ReviewRequest": {
+                "title": "ReviewRequest",
                 "required": [
-                    "movie_id",
-                    "user_id"
+                    "review",
+                    "score"
                 ],
                 "type": "object",
                 "properties": {
-                    "_id": {
-                        "title": " Id",
-                        "type": "string",
-                        "format": "uuid",
-                        "default": "b17d77a8-7814-4bc6-bb84-bca28a6d9f62"
+                    "review": {
+                        "title": "Review",
+                        "maxLength": 100,
+                        "type": "string"
                     },
-                    "movie_id": {
-                        "title": "Movie Id",
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    "user_id": {
-                        "title": "User Id",
-                        "type": "string",
-                        "format": "uuid"
+                    "score": {
+                        "title": "Score",
+                        "maximum": 10.0,
+                        "minimum": 0.0,
+                        "type": "integer"
                     }
                 },
-                "description": "Like request."
+                "description": "Review request."
+            },
+            "ReviewResponse": {
+                "title": "ReviewResponse",
+                "required": [
+                    "review",
+                    "score",
+                    "_id"
+                ],
+                "type": "object",
+                "properties": {
+                    "review": {
+                        "title": "Review",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "score": {
+                        "title": "Score",
+                        "maximum": 10.0,
+                        "minimum": 0.0,
+                        "type": "integer"
+                    },
+                    "_id": {
+                        "title": " Id",
+                        "type": "string"
+                    }
+                },
+                "description": "Review response."
             },
             "ValidationError": {
                 "title": "ValidationError",
@@ -254,6 +527,12 @@
                     }
                 },
                 "description": "View progress request body."
+            }
+        },
+        "securitySchemes": {
+            "JWTBearerRemoteGrpc": {
+                "type": "http",
+                "scheme": "bearer"
             }
         }
     }

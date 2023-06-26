@@ -1,7 +1,7 @@
 from logging import config as logging_config
 from pathlib import Path
 
-from pydantic import BaseSettings, KafkaDsn, MongoDsn
+from pydantic import BaseSettings, KafkaDsn, MongoDsn, Field
 
 from .logger import LOGGING
 
@@ -20,6 +20,8 @@ class Settings(BaseSettings):
 
     mongo_dsn: MongoDsn
     mongo_db: str
+
+    auth_grpc_dsn: str = Field(env='GRPC_DSN')
 
     class Config:
         env_file = BASE_DIR / '.env'

@@ -6,6 +6,9 @@
 
 - [ugc_sprint_2](https://github.com/TRUEVORO/ugc_sprint_2)
 
+## Research
+- [README.md](research/mongo_db/README.md)
+
 ## Для запуска сервиса необходимо:
 
 ### 1. Создать .env на основе .env.template

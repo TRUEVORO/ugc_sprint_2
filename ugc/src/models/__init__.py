@@ -1,5 +1,4 @@
-from .likes import LikeRequest, DislikeRequest
-from .mixin import UUIDMixin
+from .review import ReviewRequest, ReviewResponse
 from .viev_progress import ViewProgressDto, ViewProgressRequest
 
-__all__ = ('LikeRequest', 'DislikeRequest', 'UUIDMixin', 'ViewProgressDto', 'ViewProgressRequest')
+__all__ = ('ReviewRequest', 'ReviewResponse', 'ViewProgressDto', 'ViewProgressRequest')

@@ -17,11 +17,15 @@ stop: ## - Уронить docker-compose
 tests: ## - Запустить тесты
 	python -m pytest -p no:cacheprovider ugc/tests/src/api/v1/*
 
+research-mongo: ## - Запустить research
+	docker-compose -f research/mongo_db/docker-compose.yaml up -d --build
+	python research/mongo_db/scripts/data_loader.py
+
 run-elk:
-	docker-compose -f elk/docker-compose.yml up -d --build
+	docker-compose -f elk/docker-compose.yaml up -d --build
 
 stop-elk:
-	docker-compose -f elk/docker-compose.yml down -v
+	docker-compose -f elk/docker-compose.yaml down -v
 
 clean: ## - Очистить docker
 	docker stop $$(docker ps -aq)
