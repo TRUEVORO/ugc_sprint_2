@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from api.v1 import likes_router, view_router
+from api.v1 import bookmark_router, like_router, review_router, view_router
 from brokers import KafkaProducer, kafka_broker
 from core import LOGGING, settings
 from db import mongo
@@ -40,8 +40,10 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.include_router(bookmark_router)
+app.include_router(like_router)
+app.include_router(review_router)
 app.include_router(view_router)
-app.include_router(likes_router)
 
 
 if __name__ == '__main__':

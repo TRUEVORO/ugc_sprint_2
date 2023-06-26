@@ -7,17 +7,17 @@ from db import get_mongo
 from repositories import MongoRepository
 
 
-class LikesService(MongoRepository):
+class LikeService(MongoRepository):
     """Like service."""
 
     def __init__(self, mongo: AsyncIOMotorClient) -> None:
-        """Initialization of likes service."""
+        """Initialization of like service."""
 
         super().__init__(mongo, 'likes')
 
 
 @lru_cache()
-def get_likes_service(mongo: AsyncIOMotorClient = Depends(get_mongo)) -> LikesService:
+def get_like_service(mongo: AsyncIOMotorClient = Depends(get_mongo)) -> LikeService:
     """Get like service."""
 
-    return LikesService(mongo)
+    return LikeService(mongo)
