@@ -14,6 +14,9 @@ services:
             - nginx-ugc
             - clickhouse-node1
             - clickhouse-node2
+            - clickhouse-node3
+            - clickhouse-node4
+            - mongo_db
         networks:
             custom_network:
 
@@ -27,6 +30,20 @@ services:
             custom_network:
         ports:
             - ${NGINX_PORT}:${NGINX_PORT}
+
+    mongo_db:
+        image: mongo:4.4.20-rc0-focal
+        restart: always
+        expose:
+            - ${MONGO_PORT}
+        environment:
+            MONGO_INITDB_DATABASE: ${MONGO_DB}
+        volumes:
+            - ./mongo:/docker-entrypoint-initdb.d
+        ports:
+            - ${MONGO_PORT}:${MONGO_PORT}
+        networks:
+            custom_network:
 
     zookeeper:
         image: confluentinc/cp-zookeeper:latest
@@ -71,7 +88,7 @@ services:
         depends_on:
             - zookeeper
         networks:
-            - custom_network
+            custom_network:
 
     clickhouse-node2:
         image: yandex/clickhouse-server:latest
@@ -82,7 +99,7 @@ services:
         depends_on:
             - zookeeper
         networks:
-            - custom_network
+            custom_network:
 
     clickhouse-node3:
         image: yandex/clickhouse-server:latest
@@ -99,7 +116,7 @@ services:
         depends_on:
             - zookeeper
         networks:
-            - custom_network
+            custom_network:
 
 
     clickhouse-node4:
@@ -111,7 +128,7 @@ services:
         depends_on:
             - zookeeper
         networks:
-            - custom_network
+            custom_network:
 
 networks:
     custom_network:
