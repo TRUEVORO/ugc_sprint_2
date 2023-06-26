@@ -1,7 +1,7 @@
 from logging import config as logging_config
 from pathlib import Path
 
-from pydantic import BaseSettings, KafkaDsn
+from pydantic import BaseSettings, KafkaDsn, MongoDsn
 
 from .logger import LOGGING
 
@@ -17,6 +17,9 @@ class Settings(BaseSettings):
 
     kafka_dsn: KafkaDsn
     kafka_topic: str
+
+    mongo_dsn: MongoDsn
+    mongo_db: str
 
     class Config:
         env_file = BASE_DIR / '.env'

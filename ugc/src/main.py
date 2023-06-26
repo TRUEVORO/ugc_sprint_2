@@ -5,10 +5,12 @@ import uvicorn
 from aiokafka import AIOKafkaProducer
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
+from motor.motor_asyncio import AsyncIOMotorClient
 
-from api.v1 import view_router
+from api.v1 import likes_router, view_router
 from brokers import KafkaProducer, kafka_broker
 from core import LOGGING, settings
+from db import mongo
 
 
 @asynccontextmanager
@@ -19,9 +21,13 @@ async def lifespan(app: FastAPI):  # noqa
     await aio_kafka_producer.start()
     kafka_broker.kafka_producer = KafkaProducer(aio_kafka_producer)
 
+    mongo.mongo = AsyncIOMotorClient(host=settings.mongo_dsn.host, port=int(settings.mongo_dsn.port), maxPoolSize=10)
+
     yield
 
     await kafka_broker.kafka_producer.producer.stop()
+
+    mongo.mongo.close()
 
 
 app = FastAPI(
@@ -35,6 +41,7 @@ app = FastAPI(
 )
 
 app.include_router(view_router)
+app.include_router(likes_router)
 
 
 if __name__ == '__main__':

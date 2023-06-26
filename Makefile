@@ -12,10 +12,16 @@ run: ## - Запустить docker-compose
 	docker-compose -f docker-compose.yaml up --build -d
 
 stop: ## - Уронить docker-compose
-	docker-compose -f docker-compose.yaml down
+	docker-compose -f docker-compose.yaml down -v
 
 tests: ## - Запустить тесты
 	python -m pytest -p no:cacheprovider ugc/tests/src/api/v1/*
+
+run-elk:
+	docker-compose -f elk/docker-compose.yml up -d --build
+
+stop-elk:
+	docker-compose -f elk/docker-compose.yml down -v
 
 clean: ## - Очистить docker
 	docker stop $$(docker ps -aq)
